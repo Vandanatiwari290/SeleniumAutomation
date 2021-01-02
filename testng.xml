@@ -7,8 +7,7 @@
     <parameter name="url" value="https://www.google.com/"/>-->
     <test name="ChromeTest">
         <classes>
-            <class name="seleniumproject.TestClass.googleSearchTest">
-            </class>
+            <class name="seleniumproject.TestClass.googleSearchTest"></class>
         </classes>
     </test>
 
