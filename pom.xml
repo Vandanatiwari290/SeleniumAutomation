@@ -15,6 +15,12 @@
                 <configuration>
                     <source>7</source>
                     <target>7</target>
+
+                </configuration>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile> testng.xml</suiteXmlFile>
+                    </suiteXmlFiles>
                 </configuration>
             </plugin>
         </plugins>
@@ -96,6 +102,7 @@
             <artifactId>webdrivermanager</artifactId>
             <version>4.2.2</version>
         </dependency>
+
 
     </dependencies>
 </project>
