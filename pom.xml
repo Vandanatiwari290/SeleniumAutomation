@@ -17,11 +17,7 @@
                     <target>7</target>
 
                 </configuration>
-                <configuration>
-                    <suiteXmlFiles>
-                        <suiteXmlFile> testng.xml</suiteXmlFile>
-                    </suiteXmlFiles>
-                </configuration>
+
             </plugin>
         </plugins>
     </build>
