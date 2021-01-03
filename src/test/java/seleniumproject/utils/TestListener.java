@@ -1,14 +1,22 @@
 package seleniumproject.utils;
 
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
+import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import seleniumproject.TestClass.BaseTest;
 
-import java.util.logging.Logger;
+import java.io.IOException;
 
-import static org.testng.Assert.assertTrue;
+import static seleniumproject.utils.Utils.getScreenshot;
 
 public class TestListener implements ITestListener {
+    public static WebDriver driver;
+    public static ExtentTest extentTest;
+    public static ExtentReports extentReports;
     @Override
     public void onFinish(ITestContext Result)
     {
@@ -16,9 +24,8 @@ public class TestListener implements ITestListener {
     }
 
     @Override
-    public void onStart(ITestContext Result)
+    public void onStart(ITestContext result)
     {
-
     }
 
     @Override
@@ -27,29 +34,25 @@ public class TestListener implements ITestListener {
 
     }
 
-    // When Test case get failed, this method is called.
     @Override
-    public void onTestFailure(ITestResult Result)
-    {
+    public void onTestFailure(ITestResult result) {
 
-        System.out.println("The name of the testcase failed is :"+Result.getName());
     }
 
-    // When Test case get Skipped, this method is called.
     @Override
-    public void onTestSkipped(ITestResult Result)
-    {
-        System.out.println("FAILED :"+Result.getName());
+    public void onTestSkipped(ITestResult Result) {
+
+        System.out.println("Test case skipped :"+Result.getName());
     }
 
-    // When Test case get Started, this method is called.
     @Override
     public void onTestStart(ITestResult Result)
     {
+
         System.out.println(Result.getName()+" test case started");
     }
 
-    // When Test case get passed, this method is called.
+
     @Override
     public void onTestSuccess(ITestResult Result)
     {
