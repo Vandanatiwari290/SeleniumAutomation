@@ -20,16 +20,6 @@ public  class PropertiesFile {
 }
 
 
-     /*   public static void setPropertyFile () {
-        try {
-                OutputStream outputStream = new FileOutputStream("/home/vandanatiwari/IdeaProjects/seleinumLearning/src/test/java/config/config.properties");
-                properties.setProperty("chromeBrowserName","Chrome");
-                properties.store(outputStream,null);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }*/
     }
 
 

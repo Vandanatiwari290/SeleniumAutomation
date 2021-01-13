@@ -1,15 +1,15 @@
+/*
 package seleniumproject.TestClass;
-import com.relevantcodes.extentreports.ExtentTest;
-import com.relevantcodes.extentreports.LogStatus;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import seleniumproject.utils.RetryAnalyser;
 import seleniumproject.utils.Utils;
 import java.util.List;
 public class googleSearchTest extends BaseTest {
+
+    //@Test(retryAnalyzer =RetryAnalyser.class,priority = 1)
     @Test(priority = 1)
     public void testcase1() {
         extentTest= extentReports.startTest("Google Test", "Test to launch google site");
@@ -23,7 +23,7 @@ public class googleSearchTest extends BaseTest {
         }
     }
     @Test(priority = 2)
-    public static  void scrollThePage(){
+    public static void scrollThePage(){
         Utils.scrollPageDown(driver);
     }
 
@@ -36,3 +36,4 @@ public class googleSearchTest extends BaseTest {
 }
 
 
+*/

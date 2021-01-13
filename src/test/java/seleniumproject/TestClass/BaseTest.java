@@ -1,11 +1,8 @@
 package seleniumproject.TestClass;
-
-import com.aventstack.extentreports.Status;
-import com.aventstack.extentreports.markuputils.ExtentColor;
-import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -30,20 +27,25 @@ public class BaseTest{
         extentReports.addSystemInfo("User name", "Vandana");
         extentReports.addSystemInfo("Host name", "Linux");
         extentReports.addSystemInfo("environment", "QA");
+        extentTest = extentReports.startTest("Test Name","Description");
+
 
         browserName = PropertiesFile.fetchFromPropertyFile().getProperty("chromeBrowserName");
         System.out.println(browserName);
         if (browserName.equalsIgnoreCase("chrome")) {
-            String driverPath = System.setProperty("webdriver.chrome.driver", "/home/vandanatiwari/Downloads/seleniumJars/chromedriver");
+            WebDriverManager.chromedriver().setup();
+            //String driverPath = System.setProperty("webdriver.chrome.driver", "/home/vandanatiwari/Downloads/seleniumJars/chromedriver");
             driver = new ChromeDriver();
-            driver.get("https://www.google.com");
+            //driver.get("https://www.google.com/");
+            driver.get("https://www.guru99.com/selenium-tutorial.html");
             driver.manage().window().maximize();
             driver.manage().deleteAllCookies();
             driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
         } else if (browserName.equalsIgnoreCase("firefox")) {
-            String driverPath = System.setProperty("webdriver.gecko.driver", "/home/vandanatiwari/Downloads/seleniumJars/geckodriver");
+            WebDriverManager.firefoxdriver().setup();
+           // String driverPath = System.setProperty("webdriver.gecko.driver", "/home/vandanatiwari/Downloads/seleniumJars/geckodriver");
             driver = new FirefoxDriver();
-            driver.get("https://www.google.com");
+            driver.get("https://www.guru99.com/selenium-tutorial.html");
             driver.manage().window().maximize();
             driver.manage().deleteAllCookies();
             driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
@@ -56,7 +58,8 @@ public class BaseTest{
         {
             extentTest.log(LogStatus.FAIL,result.getName()+"test case has been failed");
             String screenshotPath = Utils.getScreenshot(driver, result.getName());
-            extentTest.log(LogStatus.FAIL, extentTest.addScreencast(screenshotPath));
+            //extentTest.log(LogStatus.FAIL, String.valueOf(MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build()));
+           extentTest.log(LogStatus.FAIL, extentTest.addScreenCapture(screenshotPath));
 
         }
         else if (result.getStatus() == ITestResult.SUCCESS)
@@ -67,35 +70,7 @@ public class BaseTest{
         {
             extentTest.log(LogStatus.SKIP,result.getName()+"test case has been skipped");
         }
-
-
     }
-    /*@AfterMethod
-    public void getReports(ITestResult result) throws IOException {
-        if (result.getStatus() == ITestResult.FAILURE) {
-            extentTest.log(LogStatus.FAIL, "Test case failed is :" + result.getName());
-            extentTest.log(LogStatus.FAIL, "Test case failed is :" + result.getThrowable());
-            String screenshotPath = Utils.getScreenshot(driver, result.getName());
-            //Utils.getScreenshot(driver,result.getName());
-            extentTest.log(LogStatus.FAIL, extentTest.addScreencast(screenshotPath));
-        } else if (result.getStatus() == ITestResult.SKIP) {
-            extentTest.log(LogStatus.SKIP, "Test case skipped is :" + result.getName());
-        }
-       extentReports.endTest(extentTest);
-
-    }
-*/
-    /*@AfterMethod
-    public void captureScreenShot(ITestResult result) throws IOException {
-        if (result.getStatus() == ITestResult.FAILURE) {
-
-            extentTest.log(LogStatus.FAIL, "Test case failed is :" + result.getName());
-            extentTest.log(LogStatus.FAIL, "Test case failed is :" + result.getThrowable());
-            Utils.getScreenshot(driver, result.getName());
-        }
-
-    }*/
-
 
     @AfterTest
     public static void afterSuite()
